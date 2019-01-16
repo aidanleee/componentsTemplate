@@ -1,23 +1,21 @@
 (() => {
     // component will go here
-    const liveuser = {
-        props: ['firstname', 'lastname', 'role'], // placeholder for data
-        template: "#activeuser",
-
-        methods: {
-            logChildMsg() {
-                console.log("helo from the child component");
-            },
-
-            runParentFunc() {
-                this.$emit('passfunccallup', 'hello from the child on a click')
-            }
-        },
-
-        created: function() {
-            console.log('child component is live');
-        }
+    const HomePageComponent = {
+        template: "<h2>You're on the home page</h2>",
     };
+
+    const UsersPageComponent = {
+        template: "<h2>You're on the users page</h2>",
+    };
+
+    const routes = [
+        { path: '/', name: 'home', component: HomePageComponent },
+        { path: '/users', name: 'users', component: UsersPageComponent },
+    ];
+
+    const router = new VueRouter({
+        routes
+    });
 
     const vm = new Vue({
         el: '#app',
@@ -40,7 +38,10 @@
             }
         },
         components: {
-            user: liveuser
-        }
+            'HomePageComponent': HomePageComponent,
+            'UsersPageComponent': UsersPageComponent
+        },
+
+        router: router
     })
 })();
